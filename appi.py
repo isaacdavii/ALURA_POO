@@ -29,7 +29,7 @@ def escolher_opcao():
             finalizar_app()
         else: 
             opcao_invalida()
-    except:
+    except ValueError:
         opcao_invalida()
 
 def opcao_invalida():

@@ -1,71 +1,114 @@
+# Aqui manteremos as classes que representam os modelos de dados do restaurante
+# Classe é uma forma de organizar o código, ela é um molde para criar objetos
+# As classes são compostas por atributos e métodos
+# Métodos são funções que pertencem a uma classe
+# Atributos são variáveis que pertencem a uma classe
+# self é uma referência ao objeto que está sendo criado
+
 from modelos.avaliacao import Avaliacao
+from modelos.cardapio.item_cardapio import ItemCardapio
 
 class Restaurante:  # Sempre que criar uma classe usar a letra maiúscula
     restaurantes = []
 
-    def __init__(self, nome, categoria):
-        
-        """
-        O self ou this significa que para cara inicialiação dessa função eu quero que seja atribuída para cada restaurante
-        Self ou this > referencia da instancia atual a que nos referimos
-        E nome e categoria são as variáveis que irei inserir
-        Ao pressionar F2 eu altero o nome e onde mais ele precisa ser mudado vai automaticamente
-        
-        O método __init__ é conhecido como o construtor da classe em Python. 
-        Ele é automaticamente chamado quando uma nova instância da classe é criada e serve para realizar as inicializações necessárias nos atributos da instância. 
-        O nome __init__ é uma abreviação de initialize (inicializar), e sua principal função é garantir que os atributos da instância tenham valores iniciais apropriados. 
-        """
-        
-        self._nome = nome.title() # com [.title()] Mantemos a primeira letra maiúscula em todo nome que temos
-        self.categoria = categoria
-        self._ativo = False  # Ao colocar o underline(_) colocamos que é um atribut privado, i.e, que as pessoas não mudem o valor deles
-        self._avaliacao = []  # Lista vazia para armazenar as avaliações #adicionado depois
-        Restaurante.restaurantes.append(self)  # a fim de add o restaurante desejado na lista
+    def __init__(self, nome, categoria):    
+        self._nome = (nome.title())  # title() = Deixa a primeira letra de cada palavra em maiúscula
+        self._categoria = (categoria.title())
+        self._ativo = False  # Atributo privado colocando '__' antes do nome
+        self._avaliacao = []
+        self._cardapio = []
+        Restaurante.restaurantes.append(self)
 
-    def __str__(self):
-        return f'{self._nome} | {self.categoria}'
+    def __str__(self):  # Método especial que retorna uma string
+        return f"{self._nome} | {self._categoria}"
     
-    @classmethod  # Método de classe, que não é de instância, mas sim da classe. Uso [cls]
-    def listar_restaurantes(cls):
-        print(f'{"Nome do restaurante".ljust(25)} | {"Categoria".ljust(25)} | {"Avaliação".ljust(25)} | {"Status"}')
-        for restaurante in cls.restaurantes: # Alterei Restaurante.restaurantes para cls.restaurantes
-            print(f'{restaurante._nome.ljust(25)} | {restaurante.categoria.ljust(25)} | {str(restaurante.media_avaliacoes).ljust(25)} | {restaurante.ativo}')
+    @classmethod  # Decorador que transforma o método em um método de classe
+    def listar_restaurantes(cls):  # Método que lista os restaurantes
+        print(f"{'Nome do Restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Avaliação'.ljust(10)} | {'Status'}")
+        print("-" * 65)
+        for restaurante in cls.restaurantes:
+            print(f"{restaurante.nome.ljust(20)} | {restaurante.categoria.ljust(20)} | {str(restaurante.media_avaliacoes).ljust(10)} | {restaurante.ativo}")
 
-    @property  # Modificar como um atributo é lido. Usado para op matemáticas ou agrupamento de muitos valores
+    @property   # Decorador que transforma o método em uma propriedade
+                # Propriedade é um método que se comporta como um atributo
+                # Modifica como um atributo é lido
     def ativo(self):
-        return '⌧' if self._ativo else '☐'
+        return "ON" if self._ativo else "OFF"
+    @property
+    def nome(self):
+        return self._nome
+    @property
+    def categoria(self):
+        return self._categoria
+    @property
+    def avaliacao(self):
+        return self._avaliacao
+    @property
+    def cardapio(self):
+        return self._cardapio
     
-    def alternar_estado(self): # É um método para o objeto, não para a classe
+    def alterar_estado(self):
         self._ativo = not self._ativo
         
-    @property    
+    def adicionar_avaliacao(self, cliente, nota):
+        if 0 < nota <= 5:            
+            avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(avaliacao)
+        return
+        
+    @property # Torna o método disponível para visualização como um atributo
     def media_avaliacoes(self):
         if not self._avaliacao:
-            # mudarei de return 0 para uma string vazia
-            return '-'
-        else:
-            return round(sum([avaliacao._nota for avaliacao in self._avaliacao]) / len(self._avaliacao), 1)
-            # Round seria o arredondamento de casas decimais round(objeto, 2) para 2 casas decimais
+            return '-' # Retorna um traço se não houver avaliações
+        soma_notas = sum([avaliacao.nota for avaliacao in self._avaliacao]) # List Comprehension
+        return round(soma_notas / len(self._avaliacao), 1)
 
     def receber_avaliacao(self, cliente, nota):
         if 0 < nota <= 5: #Assim eu adiciono apenas as notas que estão nestes valores
             avaliacao = Avaliacao(cliente, nota)
             self._avaliacao.append(avaliacao)
 
+    def adicionar_item_cardapio(self, item):
+        """
+        Verificamos se o item é sublcasse de ItemCardapio, i.e, prato ou bebida
+        Se sim, adicionamos
+        """
+        if isinstance(item, ItemCardapio):
+            self._cardapio.append(item)
+        else:
+            raise ValueError("O item não é um prato ou bebida")
+
+    # Informa que é uma propriedade de leitura apenas
+    def exibir_cardapio(self):
+        print(f"Cardápio do Restaurante {self._nome}")
+        # Essa função enumerate() vai devolver sempre duas informações: 
+        # o índice que desejamos e o próprio item. Podemos escrever, por exemplo,
+        # for i, item in enumerate(self._ cardapio, start=1). Aqui, i simboliza o índice.
+        for i, item in enumerate(self._cardapio, start = 1):
+            if hasattr(item, 'descricao'):
+                mensagem_prato = f'{i}. Nome: {item.nome.ljust(20)} | Preço: R${str(item.preco).ljust(10)} | Descrição: {item.descricao} '
+                print(mensagem_prato)
+            else:
+                mensagem_bebida = f'{i}. Nome: {item.nome.ljust(20)} | Preço: R${str(item.preco).ljust(10)} | Tamanho: {item.tamanho}'
+                print(mensagem_bebida)
 
 
+# Instâncias da classe Restaurante
+# restaurante_praca = Restaurante("praça", "Gourmet")
+# restaurante_praca.alterar_estado()
+# restaurante_pizza = Restaurante("pizza place", "Italiana")
 
-'''
-Método utilizado no começo. Porém, na prática, será inserido pelo usuário
+# Esse chamado só é necessário se o método listar_restaurantes não for chamado
+# restaurantes = [restaurante_praca, restaurante_pizza]
 
-restaurante_pizza = Restaurante('pizzaria duBom', 'Pizzaria')
-# restaurante_pizza._nome = 'Pizzaria JF' # Sempre que for alterar, temos que ter a mesma variável [_nome] por ex
-restaurante_pizza._ativo = True
-restaurante_mexicano = Restaurante('mechicano', 'Mexicano')
-restaurante_mexicano.alternar_estado()
-restaurante_praca = Restaurante('praça', 'Gourmet')
+# print(dir(restaurante_pizza)) # dir() = Mostra os métodos e atributos do objeto
+# print(vars(restaurante_praca)) # vars() = Mostra os atributos do objeto
+# print(restaurantes[0].nome)
+# print(restaurantes[1].categoria)
 
-Restaurante.listar_restaurantes()  # Aqui eu chamo a função listar_restaurantes() que está dentro da classe Restaurante
+# Usado para chamar o método __str__
+# print(restaurante_praca)
+# print(restaurante_pizza)
 
-'''
+# Restaurante.listar_restaurantes()  # Chamando o método listar_restaurantes
 
