@@ -1,6 +1,6 @@
 # ALURA_POO
 
-Este repositório contém materiais e exercícios relacionados ao curso de **Programação Orientada a Objetos (POO)** oferecido pela Alura. O objetivo do projeto é aplicar os conceitos fundamentais da POO em Python por meio de exemplos práticos e desafios.
+Este repositório contém materiais e exercícios relacionados ao curso de **Programação Orientada a Objetos (POO)** oferecido pela Alura. O objetivo do projeto é aplicar os conceitos fundamentais da POO em Python por meio de exemplos práticos e desafios. O projeto utiliza **FastAPI** para criar endpoints REST, incluindo um endpoint para listar restaurantes e seus cardápios.
 
 ## Estrutura do Repositório
 
@@ -16,6 +16,7 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
 - `appi.py` - Contém a interface de um aplicativo que que cadastra, lista e restaurantes.
 - `biblioteca.py` - Arquivo principal para o exercício referente a um sistema de Biblioteca.
 - `main.py` - Arquivo principal para o exercício referente a visualização e cadastro de veículos.
+- `requirements.txt` - Lista de dependências necessárias para executar o projeto. Isso diz respeito à criação do ambiente virtual.
 
 ## Funcionalidades
 
@@ -27,6 +28,26 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
 ## Tecnologias Utilizadas
 
 - Python 3.13.2
+- FastAPI
+- Requests
+- Uvicorn
+
+## Dependências
+
+Para rodar o projeto, instale as dependências listadas em `requirements.txt`:
+```bash
+pip install -r requirements.txt
+```
+
+## Endpoints da API
+
+### `GET /api/hello`
+Retorna uma mensagem de boas-vindas.
+
+### `GET /api/restaurantes/`
+Busca informações sobre restaurantes e seus cardápios:
+- Sem parâmetro: retorna todos os restaurantes.
+- Com `?restaurante=nome`: retorna o cardápio do restaurante especificado.
 
 ## Como Executar o Projeto
 
@@ -46,6 +67,11 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
    ```
    
    *Observação*: Caso o arquivo `main.py` seja o ponto de entrada principal, substitua `app.py` por `main.py` no comando acima.
+
+4. **Execute o servidor FastAPI**:
+   ```bash
+   uvicorn main:app --reload
+   ```
 
 ## Como Contribuir
 
@@ -69,5 +95,7 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
 
 Para mais informações, entre em contato pelo email: izaacddavid98@gmail.com.
 
+## Referências
 
-
+- [Documentação do Python](https://docs.python.org/pt-br/3/)
+- [Documentação oficial do FastAPI](https://fastapi.tiangolo.com/)

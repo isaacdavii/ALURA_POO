@@ -1,0 +1,68 @@
+# Flask: Simplicidade e Flexibilidade
+
+Flask é conhecido por sua simplicidade e facilidade de uso. É uma escolha popular para projetos menores ou para desenvolvedores que preferem ter mais controle sobre os componentes que utilizam. Com Flask, você pode rapidamente criar uma API básica com poucas linhas de código, sendo uma excelente opção para prototipagem rápida, como mostrado no código a seguir:
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route('/api')
+    def ola_mundo():
+        return 'Olá Mundo!'
+
+    if __name__ == '__main__':
+        app.run()
+
+# Django: Estrutura Poderosa e Convenções Batteries-Included
+
+O Django é uma escolha robusta para projetos mais complexos e de maior escala. Ele fornece uma estrutura completa que inclui um sistema de administração, ORM (Object-Relational Mapping) e muitos outros recursos. Apesar de ser um framework mais pesado em comparação com Flask, o Django oferece uma solução abrangente para desenvolvimento web. Um exemplo de como criar uma API simples em Django está no código a seguir:
+
+    from django.http import JsonResponse
+    from django.views import View
+
+    class MinhaAPI(View):
+        def get(self, request):
+            return JsonResponse({'message': 'Olá mundo!'})
+
+
+
+# FastAPI: Alta Performance e Documentação Automática
+
+Como vimos, FastAPI é uma escolha moderna, otimizada para alta performance e fácil utilização. Ele utiliza a tipagem de dados do Python 3.7+ para oferecer uma documentação automática excepcional, facilitando a compreensão e utilização da API.
+
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/api")
+    def ola_mundo():
+        return {"message": "Olá Mundo!"}
+
+FastAPI é um framework moderno e rápido para construir APIs web com Python. Com o ele, você pode criar uma variedade de aplicativos e serviços, especialmente focados em APIs. Ao desenvolver aplicações web utilizando o framework FastAPI, é comum interagir com serviços externos por meio de requisições HTTP. 
+
+
+# Resumo
+
+Independentemente da escolha entre Flask, Django ou FastAPI, o importante é considerar os requisitos específicos do projeto, a experiência da equipe de desenvolvimento e as características desejadas na API. Cada framework tem seus pontos fortes, e a seleção depende das necessidades particulares das pessoas desenvolvedoras e do contexto do projeto.
+
+# Referências
+Próxima Atividade
+
+1. Documentação oficial do Python (gratuito, português, texto)
+    https://docs.python.org/pt-br/3/
+    Fonte oficial de informações sobre a linguagem Python. Aqui você encontra informações sobre os conceitos relacionados ao desenvolvimento da linguagem, tutoriais, referências, informações de atualizações, boas práticas e exemplos.
+
+2. Artigo FastAPI (gratuito, português, texto)
+    https://www.alura.com.br/artigos/como-criar-apis-python-usando-fastapi
+    Artigo focado em informar como o FastAPI funciona com alguns exemplos práticos
+
+3. Documentação oficial do FastAPI (gratuito, inglês, texto)
+    https://fastapi.tiangolo.com/
+    Documentação oficial do FastAPI com exemplos, tutoriais e comunidade
+
+
+
+# APIs Utilizadas
+https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json
+https://economia.awesomeapi.com.br/last/USD-BRL
+
