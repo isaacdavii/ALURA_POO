@@ -1,6 +1,6 @@
 # ALURA_POO
 
-Este repositório contém materiais e exercícios relacionados ao curso de **Programação Orientada a Objetos (POO)** oferecido pela Alura. O objetivo do projeto é aplicar os conceitos fundamentais da POO em Python por meio de exemplos práticos e desafios. O projeto utiliza **FastAPI** para criar endpoints REST, incluindo um endpoint para listar restaurantes e seus cardápios.
+Este repositório contém materiais e exercícios relacionados ao curso de **Programação Orientada a Objetos (POO)** oferecido pela Alura. O objetivo do projeto é aplicar os conceitos fundamentais da POO em Python por meio de exemplos práticos e desafios. O projeto utiliza **FastAPI** para criar endpoints REST, incluindo um endpoint para listar restaurantes e seus cardápios. Tem objetivo puramente acadêmico e para auxílio nos estudos da faculdade.
 
 ## Estrutura do Repositório
 
@@ -23,6 +23,7 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
 - Implementação de classes e objetos.
 - Definição de métodos e atributos.
 - Exercícios práticos para reforçar os conceitos de POO.
+- Anotações nos códigos para melhor entendimento nos estudos.
 - Estrutura modular para facilitar o aprendizado e a manutenção do código.
 
 ## Tecnologias Utilizadas
