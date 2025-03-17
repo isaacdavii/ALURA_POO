@@ -98,4 +98,8 @@ Para mais informações, entre em contato pelo email: izaacddavid98@gmail.com.
 ## Referências
 
 - [Documentação do Python](https://docs.python.org/pt-br/3/)
+<<<<<<< HEAD
 - [Documentação oficial do FastAPI](https://fastapi.tiangolo.com/)
+=======
+- [Documentação oficial do FastAPI](https://fastapi.tiangolo.com/)
+>>>>>>> 00b4d8eb2355ec8309498654940f17ea6b013d54
