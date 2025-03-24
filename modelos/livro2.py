@@ -42,7 +42,7 @@ class Livro:
             print(f"{livro.titulo.ljust(20)} | {livro.autor.ljust(20)} | {str(livro.ano).ljust(7)} | {livro.disponivel}")
         print()
         
-    @staticmethod
+    @staticmethod # Método estático não precisa de uma instância da classe para ser chamado
     def verificar_disponibilidade():
         ano = int(input('Digite o ano de publicação: '))
         livros_disponiveis = [livro.titulo for livro in Livro.livros if livro.ano == ano and livro.disponivel]
