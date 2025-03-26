@@ -30,9 +30,7 @@ class ContaBancaria:
         print(f"{'Titular'.ljust(7)} | {'Saldo'.ljust(7)} | {'Status'}")
         print("-" * 30)
         for conta in cls.contas:
-            print(
-                f"{conta.titular.ljust(7)} | {str(conta.saldo).ljust(7)} | {conta.ativo}"
-            )
+            print(f"{conta.titular.ljust(7)} | {str(conta.saldo).ljust(7)} | {conta.ativo}")
 
 
 conta1 = ContaBancaria("João", 1_000)
@@ -64,9 +62,7 @@ class ClienteBanco:
     @classmethod
     def listar_clientes(cls):
         for cliente in cls.clientes:
-            print(
-                f"Nome: {cliente.nome}, Idade: {cliente.idade}, CPF: {cliente.cpf}, Endereço: {cliente.endereco}, Telefone: {cliente.telefone}"
-            )
+            print(f"Nome: {cliente.nome}, Idade: {cliente.idade}, CPF: {cliente.cpf}, Endereço: {cliente.endereco}, Telefone: {cliente.telefone}")
 
 
 # Instanciando 3 objetos da classe ClienteBanco
