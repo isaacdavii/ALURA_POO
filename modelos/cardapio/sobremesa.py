@@ -5,8 +5,8 @@ class Sobremesa(ItemCardapio):
     
     def __init__(self, nome, preco, tipo, tamanho, descricao):
         super().__init__(nome, preco)
-        self._tipo = tipo
-        self._tamanho = tamanho
+        self._tipo = (tipo.capitalize())
+        self._tamanho = (tamanho.title())
         self._descricao = (descricao.capitalize())
         Sobremesa.sobremesas.append(self)
         
