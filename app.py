@@ -1,8 +1,11 @@
 # Programa Principal
+import os
+
 from modelos.restaurante import Restaurante
 from modelos.cardapio.bebida import Bebida
 from modelos.cardapio.prato import Prato
 from modelos.cardapio.sobremesa import Sobremesa
+from modelos.funcionalidades import escolher_opcao, exibir_nome_do_programa, exibir_opcoes
 
 # Teste de adicionar restaurante
 restaurante_praca = Restaurante("praça", "gourmet")
@@ -31,12 +34,12 @@ bebida4 = Bebida("Guaraná", 6.00, "600ml")
 # restaurante_japones.alterar_estado()
 
 # Teste de adicionar avaliação
-restaurante_mexicano.adicionar_avaliacao("João", 5)
-restaurante_japones.adicionar_avaliacao("Maria", 4)
-restaurante_praca.adicionar_avaliacao("José", 3)
-restaurante_praca.adicionar_avaliacao("Ana", 5)
-restaurante_praca.adicionar_avaliacao("Carlos", 4)
-restaurante_mexicano.adicionar_avaliacao("Marta", 2)
+# restaurante_mexicano.adicionar_avaliacao("João", 5)
+# restaurante_japones.adicionar_avaliacao("Maria", 4)
+# restaurante_praca.adicionar_avaliacao("José", 3)
+# restaurante_praca.adicionar_avaliacao("Ana", 5)
+# restaurante_praca.adicionar_avaliacao("Carlos", 4)
+# restaurante_mexicano.adicionar_avaliacao("Marta", 2)
 
 # # Teste de adicionar bebida ao cardápio
 # restaurante_praca.adicionar_bebida_cardapio(bebida1)
@@ -65,25 +68,43 @@ restaurante_praca.adicionar_item_cardapio(sobremesa2)
 restaurante_mexicano.adicionar_item_cardapio(sobremesa3)
 restaurante_japones.adicionar_item_cardapio(sobremesa4)
 
-def main():
-    # Restaurante.listar_restaurantes()
-    # # print(prato1)
-    # print()
-    # # print(bebida1)
-    # # print()
-    # Prato.listar_pratos()
-    # print()
-    # Bebida.listar_bebidas()
-    restaurante_praca.exibir_cardapio()
-    print()
-    restaurante_mexicano.exibir_cardapio()
-    print()
-    restaurante_tailandes.exibir_cardapio()
-    print()
-    restaurante_pizza.exibir_cardapio()
-    print()
-    restaurante_japones.exibir_cardapio()
 
+def main():
+    os.system('cls') #usada para limpar a tela
+    exibir_nome_do_programa()
+    exibir_opcoes()
+    escolher_opcao(main_func = main)
 
 if __name__ == "__main__":
     main()
+
+# def main():
+#     # Restaurante.listar_restaurantes()
+#     # # print(prato1)
+#     # print()
+#     # # print(bebida1)
+#     # # print()
+#     # Prato.listar_pratos()
+#     # print()
+#     # Bebida.listar_bebidas()
+#     restaurante_praca.exibir_cardapio()
+#     print()
+#     restaurante_mexicano.exibir_cardapio()
+#     print()
+#     restaurante_tailandes.exibir_cardapio()
+#     print()
+#     restaurante_pizza.exibir_cardapio()
+#     print()
+#     restaurante_japones.exibir_cardapio()
+#     print()
+#     restaurante_mexicano.listar_avaliacoes()
+#     print()
+#     restaurante_praca.listar_avaliacoes()
+#     print()
+#     restaurante_praca.media_avaliacoes
+#     print()
+
+
+
+# if __name__ == "__main__":
+#     main()
