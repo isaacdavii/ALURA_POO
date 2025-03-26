@@ -34,12 +34,12 @@ bebida4 = Bebida("Guaraná", 6.00, "600ml")
 # restaurante_japones.alterar_estado()
 
 # Teste de adicionar avaliação
-# restaurante_mexicano.adicionar_avaliacao("João", 5)
-# restaurante_japones.adicionar_avaliacao("Maria", 4)
-# restaurante_praca.adicionar_avaliacao("José", 3)
-# restaurante_praca.adicionar_avaliacao("Ana", 5)
-# restaurante_praca.adicionar_avaliacao("Carlos", 4)
-# restaurante_mexicano.adicionar_avaliacao("Marta", 2)
+restaurante_mexicano.adicionar_avaliacao("João", 5)
+restaurante_japones.adicionar_avaliacao("Maria", 4)
+restaurante_praca.adicionar_avaliacao("José", 3)
+restaurante_praca.adicionar_avaliacao("Ana", 5)
+restaurante_praca.adicionar_avaliacao("Carlos", 4)
+restaurante_mexicano.adicionar_avaliacao("Marta", 2)
 
 # # Teste de adicionar bebida ao cardápio
 # restaurante_praca.adicionar_bebida_cardapio(bebida1)

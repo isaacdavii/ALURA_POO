@@ -4,6 +4,7 @@ from modelos.restaurante import Restaurante
 from modelos.cardapio.bebida import Bebida
 from modelos.cardapio.prato import Prato
 from modelos.cardapio.sobremesa import Sobremesa
+from modelos.avaliacao import Avaliacao
 
 def exibir_nome_do_programa():
     print("""
@@ -13,8 +14,9 @@ def exibir_nome_do_programa():
 def exibir_opcoes():
     print('1. Cadastrar')
     print('2. Listar')
-    print('3. Alterar status do restaurante')
-    print('4. Sair\n')
+    print('3. Adicionar avaliação a um restaurante')
+    print('4. Alterar status do restaurante')
+    print('5. Sair\n')
     
 def exibir_cadastros():
     print('\n1. Cadastrar restaurante')
@@ -28,7 +30,9 @@ def exibir_listagens():
     print('2. Listar pratos')
     print('3. Listar bebidas')
     print('4. Listar sobremesas')
-    print('5. Voltar ao menu principal\n')
+    print('5. Listar TODAS as avaliações por restaurante')
+    print('6. Listar MÉDIA das avaliações por restaurante')
+    print('7. Voltar ao menu principal\n')
 
 def escolher_opcao(main_func):
     try:
@@ -39,8 +43,10 @@ def escolher_opcao(main_func):
         elif opcao_escolhida == 2:
             escolher_listagem(main_func)
         elif opcao_escolhida == 3:
-            alternar_status_restaurante(main_func)
+            adicionar_avaliacao(main_func)
         elif opcao_escolhida == 4:
+            alternar_status_restaurante(main_func)
+        elif opcao_escolhida == 5:
             finalizar_app()
         else:
             opcao_invalida(main_func)
@@ -81,6 +87,10 @@ def escolher_listagem(main_func):
         elif opcao_escolhida == 4:
             listar_sobremesas(main_func)
         elif opcao_escolhida == 5:
+            listar_todas_avaliacoes(main_func)
+        elif opcao_escolhida == 6:
+            listar_media_avaliacoes(main_func)
+        elif opcao_escolhida == 7:
             main_func()
         else:
             opcao_invalida(main_func)
@@ -236,12 +246,55 @@ def alternar_status_restaurante(main_func):
 def finalizar_app():
     exibir_subtitulo('Finalizando o aplicativo!')
 
+def adicionar_avaliacao(main_func):
+    exibir_subtitulo('ADICIONANDO AVALIAÇÃO AO RESTAURANTE')
+    
+    nome_restaurante = input('Digite o nome do restaurante que deseja avaliar: ')
+    restaurante_encontrado = False
+    
+    for restaurante in Restaurante.restaurantes:
+        if nome_restaurante == restaurante._nome:
+            restaurante_encontrado = True
+            cliente = input('Digite o nome do cliente: ')
+            nota = int(input('Digite a nota da avaliação (de 1 a 5): '))
+            if nota not in range(1, 6):
+                print('Nota inválida!')
+                nota = int(input('Digite a nota da avaliação (de 1 a 5): '))
+            avaliacao = Avaliacao(cliente, nota)
+            restaurante._avaliacao.append(avaliacao)
+            print(f'A avaliação do cliente {cliente} foi adicionada com sucesso!')
+            break
+    if not restaurante_encontrado:
+        print(f'O restaurante {nome_restaurante} não foi encontrado!')
+    
+    voltar_ao_menu_principal(main_func)
+            
+def listar_todas_avaliacoes(main_func):
+    exibir_subtitulo('LISTANDO TODAS AS AVALIAÇÕES POR RESTAURANTE')
+    
+    for restaurante in Restaurante.restaurantes:
+        print(f'\nAvaliações do restaurante {restaurante._nome}')
+        print(f'{"Cliente".ljust(20)} | {"Nota".ljust(10)}')
+        print('-' * 30)
+        for avaliacao in restaurante._avaliacao:
+            print(f'{avaliacao._cliente.ljust(20)} | {str(avaliacao._nota).ljust(10)}')
+        
+    voltar_ao_menu_principal(main_func)
+    
+def listar_media_avaliacoes(main_func):
+    exibir_subtitulo('LISTANDO MÉDIA DAS AVALIAÇÕES POR RESTAURANTE')
+    
+    for restaurante in Restaurante.restaurantes:
+        if not restaurante._avaliacao:
+            media = '-'
+        else:
+            soma_notas = sum([avaliacao._nota for avaliacao in restaurante._avaliacao])
+            media = round(soma_notas / len(restaurante._avaliacao), 1)
+        print(f'A média das avaliações do restaurante {restaurante._nome} é {media}')
+        
+    voltar_ao_menu_principal(main_func)
 
-
-
-#feat: adicionar avaliação ao restaurante
-#feat: listar a média de avaliação do restaurante
-#feat: listar as avaliações do restaurante
+#Future feats:
 #feat: adicionar item (prato, bebida, sobremesa) ao cardápio de um restaurante
 
         
