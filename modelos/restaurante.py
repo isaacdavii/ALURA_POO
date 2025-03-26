@@ -60,14 +60,15 @@ class Restaurante:  # Sempre que criar uma classe usar a letra maiúscula
     def media_avaliacoes(self):
         if not self._avaliacao:
             return '-' # Retorna um traço se não houver avaliações
-        soma_notas = sum([avaliacao.nota for avaliacao in self._avaliacao]) # List Comprehension
-        return round(soma_notas / len(self._avaliacao), 1)
-
-    def receber_avaliacao(self, cliente, nota):
-        if 0 < nota <= 5: #Assim eu adiciono apenas as notas que estão nestes valores
-            avaliacao = Avaliacao(cliente, nota)
-            self._avaliacao.append(avaliacao)
-
+        soma_notas = sum([avaliacao._nota for avaliacao in self._avaliacao]) # List Comprehension
+        return print(f"A média das avaliações do restaurante {self._nome} é {round(soma_notas / len(self._avaliacao), 1):.2f}")
+    
+    def listar_avaliacoes(self):
+        print(f"{'Cliente'.ljust(20)} | {'Nota'.ljust(10)}")
+        print("-" * 30)
+        for avaliacao in self._avaliacao:
+            print(f"{avaliacao._cliente.ljust(20)} | {str(avaliacao._nota).ljust(10)}")
+    
     def adicionar_item_cardapio(self, item):
         """
         Verificamos se o item é sublcasse de ItemCardapio, i.e, prato ou bebida
@@ -91,6 +92,9 @@ class Restaurante:  # Sempre que criar uma classe usar a letra maiúscula
             else:
                 mensagem_bebida = f'{i}. Nome: {item.nome.ljust(20)} | Preço: R${str(item.preco).ljust(10)} | Tamanho: {item.tamanho}'
                 print(mensagem_bebida)
+
+
+
 
 
 # Instâncias da classe Restaurante
