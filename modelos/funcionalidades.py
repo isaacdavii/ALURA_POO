@@ -1,5 +1,4 @@
 import os
-import sqlite3
 
 from modelos.restaurante import Restaurante
 from modelos.cardapio.bebida import Bebida
@@ -10,18 +9,6 @@ def exibir_nome_do_programa():
     print("""
 Ｓａｂｏｒ Ｅｘｐｒｅｓｓ
 """)
-    
-# def exibir_opcoes():
-#     print('1. Cadastrar restaurante')
-#     print('2. Listar restaurantes')
-#     print('3. Cadastrar prato')
-#     print('4. Listar pratos')
-#     print('5. Cadastrar bebida')
-#     print('6. Listar bebidas')
-#     print('7. Cadastrar sobremesa')
-#     print('8. Listar sobremesas')
-#     print('9. Alternar status do restaurante')
-#     print('10. Sair\n')
 
 def exibir_opcoes():
     print('1. Cadastrar')
@@ -149,7 +136,7 @@ def listar_restaurantes(main_func):
         print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
     
     voltar_ao_menu_principal(main_func)
-       
+
 def cadastrar_novo_prato(main_func):
     exibir_subtitulo('CADASTRAR NOVO PRATO!')
     
@@ -248,7 +235,9 @@ def alternar_status_restaurante(main_func):
 
 def finalizar_app():
     exibir_subtitulo('Finalizando o aplicativo!')
-        
+
+
+
 
 #feat: adicionar avaliação ao restaurante
 #feat: listar a média de avaliação do restaurante
