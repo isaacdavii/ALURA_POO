@@ -15,8 +15,9 @@ def exibir_opcoes():
     print('1. Cadastrar')
     print('2. Listar')
     print('3. Adicionar avaliação a um restaurante')
-    print('4. Alterar status do restaurante')
-    print('5. Sair\n')
+    print('4. Mostrar cardápio de um restaurante')
+    print('5. Alterar status do restaurante')
+    print('6. Sair\n')
     
 def exibir_cadastros():
     print('\n1. Cadastrar restaurante')
@@ -45,8 +46,10 @@ def escolher_opcao(main_func):
         elif opcao_escolhida == 3:
             adicionar_avaliacao(main_func)
         elif opcao_escolhida == 4:
-            alternar_status_restaurante(main_func)
+            mostrar_cardapio(main_func)
         elif opcao_escolhida == 5:
+            alternar_status_restaurante(main_func)
+        elif opcao_escolhida == 6:
             finalizar_app()
         else:
             opcao_invalida(main_func)
@@ -272,12 +275,19 @@ def adicionar_avaliacao(main_func):
 def listar_todas_avaliacoes(main_func):
     exibir_subtitulo('LISTANDO TODAS AS AVALIAÇÕES POR RESTAURANTE')
     
+    nome_restaurante = input('Digite o nome do restaurante que deseja ver as avaliações: ')
+    restaurante_encontrado = False
+    
     for restaurante in Restaurante.restaurantes:
-        print(f'\nAvaliações do restaurante {restaurante._nome}')
-        print(f'{"Cliente".ljust(20)} | {"Nota".ljust(10)}')
-        print('-' * 30)
-        for avaliacao in restaurante._avaliacao:
-            print(f'{avaliacao._cliente.ljust(20)} | {str(avaliacao._nota).ljust(10)}')
+        if restaurante._nome == nome_restaurante:
+            restaurante_encontrado = True
+            print(f'\nAvaliações do restaurante {restaurante._nome}')
+            print(f'{"Cliente".ljust(20)} | {"Nota".ljust(10)}')
+            print('-' * 30)
+            for avaliacao in restaurante._avaliacao:
+                print(f'{avaliacao._cliente.ljust(20)} | {str(avaliacao._nota).ljust(10)}')
+    if not restaurante_encontrado:
+        print(f'O restaurante {nome_restaurante} não foi encontrado!')
         
     voltar_ao_menu_principal(main_func)
     
@@ -294,6 +304,31 @@ def listar_media_avaliacoes(main_func):
         
     voltar_ao_menu_principal(main_func)
 
+def mostrar_cardapio(main_func):
+    exibir_subtitulo('MOSTRANDO CARDAPIO')
+    
+    nome_restaurante = input('Digite o nome do restaurante que deseja ver o cardáopio: ')
+    restaurante_encontrado = False
+    
+    for restaurante in Restaurante.restaurantes:
+        if nome_restaurante == restaurante._nome:
+            restaurante_encontrado = True
+            print(f'\nCardárpio do restaurante {restaurante._nome}')
+            print('-' * 50)
+            for i, item in enumerate(restaurante._cardapio, start = 1):
+                if hasattr(item, 'descricao'):
+                    mensagem_prato = f'{i}. Nome: {item.nome.ljust(20)} | Preço: R${str(item.preco).ljust(10)} | Descrição: {item.descricao} '
+                    print(mensagem_prato)
+                else:
+                    mensagem_bebida = f'{i}. Nome: {item.nome.ljust(20)} | Preço: R${str(item.preco).ljust(10)} | Tamanho: {item.tamanho}'
+                    print(mensagem_bebida)
+        
+    if not restaurante_encontrado:
+        print(f'O restaurante {nome_restaurante} não foi encontrado!')
+    
+    voltar_ao_menu_principal(main_func)
+    
+    
 #Future feats:
 #feat: adicionar item (prato, bebida, sobremesa) ao cardápio de um restaurante
 
