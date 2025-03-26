@@ -7,7 +7,7 @@ class Sobremesa(ItemCardapio):
         super().__init__(nome, preco)
         self._tipo = tipo
         self._tamanho = tamanho
-        self._descricao = descricao
+        self._descricao = (descricao.capitalize())
         Sobremesa.sobremesas.append(self)
         
     @property

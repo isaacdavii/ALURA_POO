@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class ItemCardapio(ABC):
     def __init__(self, nome, preco):
-        self._nome = nome
+        self._nome = (nome.capitalize())
         self._preco = preco
     
     def __str__(self):

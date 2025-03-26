@@ -3,7 +3,7 @@ from modelos.cardapio.item_cardapio import ItemCardapio
 class Prato(ItemCardapio):  # Prato is a subclass of ItemCardapio
     """
     Essa classe vai herda métodos e atributos de uma outra classe (ItemCardapio)
-    e adicionar um novo atributo (descricao).
+     e adicionar um novo atributo (descricao).
     A herança é um conceito fundamental na programação orientada a objetos (OO)
      e desempenha um papel crucial no desenvolvimento de software.
      A importância da herança está relacionada à capacidade de criar novas classes
@@ -15,7 +15,7 @@ class Prato(ItemCardapio):  # Prato is a subclass of ItemCardapio
         super().__init__(nome, preco)  # Chama o construtor da classe pai.
         # Permite que acesse informações de outra classe. Nesse caso, nome e preço
         # super() é uma função que retorna o objeto pai da classe atual
-        self._descricao = descricao
+        self._descricao = (descricao.capitalize())
         Prato.pratos.append(self)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class Prato(ItemCardapio):  # Prato is a subclass of ItemCardapio
         self._preco *= 0.92
         self._preco = round(self._preco, 2)
         return self._preco  
-            
+    
             
             
             
