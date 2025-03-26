@@ -55,6 +55,11 @@ restaurante_mexicano.adicionar_item_cardapio(bebida3)
 restaurante_pizza.adicionar_item_cardapio(prato2)
 restaurante_praca.adicionar_item_cardapio(bebida1)
 restaurante_tailandes.adicionar_item_cardapio(bebida2)
+restaurante_tailandes.adicionar_item_cardapio(prato3)
+restaurante_pizza.adicionar_item_cardapio(prato4)
+restaurante_japones.adicionar_item_cardapio(prato2)
+restaurante_japones.adicionar_item_cardapio(bebida4)
+restaurante_praca.adicionar_item_cardapio(prato1)
 
 # Teste de adicionar sobremesa
 sobremesa1 = Sobremesa("Pudim", 10.00, "Doce de leite", "Pequeno", "Pudim de leite condensado")
@@ -67,6 +72,10 @@ restaurante_pizza.adicionar_item_cardapio(sobremesa1)
 restaurante_praca.adicionar_item_cardapio(sobremesa2)
 restaurante_mexicano.adicionar_item_cardapio(sobremesa3)
 restaurante_japones.adicionar_item_cardapio(sobremesa4)
+restaurante_praca.adicionar_item_cardapio(sobremesa1)
+restaurante_japones.adicionar_item_cardapio(sobremesa2)
+restaurante_tailandes.adicionar_item_cardapio(sobremesa3)
+restaurante_pizza.adicionar_item_cardapio(sobremesa4)
 
 
 def main():
