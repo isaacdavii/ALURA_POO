@@ -12,8 +12,7 @@ A estrutura do repositório é composta pelos seguintes diretórios e arquivos:
 - `tarefas` - Contém exercícios ou tarefas práticas realizadas durante o curso.
 
 ### Arquivos
-- `app.py` - Arquivo principal que possui as funcionalidades referente ao cadastro de restaurantes, bebidas, pratos, avaliação.
-- `appi.py` - Contém a interface de um aplicativo que que cadastra, lista e restaurantes.
+- `app.py` - Arquivo principal que possui as funcionalidades referente ao aplicativo do sistema de gerenciamento do restaurante (cadastro, listagem, remoção e outros).
 - `biblioteca.py` - Arquivo principal para o exercício referente a um sistema de Biblioteca.
 - `main.py` - Arquivo principal para o exercício referente a visualização e cadastro de veículos.
 - `requirements.txt` - Lista de dependências necessárias para executar o projeto. Isso diz respeito à criação do ambiente virtual.
@@ -99,8 +98,8 @@ Para mais informações, entre em contato pelo email: izaacddavid98@gmail.com.
 ## Referências
 
 - [Documentação do Python](https://docs.python.org/pt-br/3/)
-<<<<<<< HEAD
+
 - [Documentação oficial do FastAPI](https://fastapi.tiangolo.com/)
-=======
+
 - [Documentação oficial do FastAPI](https://fastapi.tiangolo.com/)
->>>>>>> 00b4d8eb2355ec8309498654940f17ea6b013d54
+
