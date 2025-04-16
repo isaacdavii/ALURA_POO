@@ -8,17 +8,18 @@ from modelos.avaliacao import Avaliacao
 
 def exibir_nome_do_programa():
     print("""
-Ｓａｂｏｒ Ｅｘｐｒｅｓｓ
+𝙵𝚊𝚖𝚒𝚕𝚢 Food
 """)
 
 def exibir_opcoes():
     print('1. Cadastrar')
     print('2. Listar')
-    print('3. Adicionar avaliação a um restaurante')
-    print('4. Mostrar cardápio de um restaurante')
-    print('5. Adicionar item ao cardápio de um restaurante')
-    print('6. Alterar status do restaurante')
-    print('7. Sair\n')
+    print('3. Remover')
+    print('4. Adicionar avaliação a um restaurante')
+    print('5. Mostrar cardápio de um restaurante')
+    print('6. Adicionar item ao cardápio de um restaurante')
+    print('7. Alterar status do restaurante')
+    print('8. Sair\n')
     
 def exibir_cadastros():
     print('\n1. Cadastrar restaurante')
@@ -45,14 +46,16 @@ def escolher_opcao(main_func):
         elif opcao_escolhida == 2:
             escolher_listagem(main_func)
         elif opcao_escolhida == 3:
-            adicionar_avaliacao(main_func)
+            remover_restaurante(main_func)
         elif opcao_escolhida == 4:
-            mostrar_cardapio(main_func)
+            adicionar_avaliacao(main_func)
         elif opcao_escolhida == 5:
-            adicionar_item_ao_cardapio_de_restaurante(main_func)
+            mostrar_cardapio(main_func)
         elif opcao_escolhida == 6:
-            alternar_status_restaurante(main_func)
+            adicionar_item_ao_cardapio_de_restaurante(main_func)
         elif opcao_escolhida == 7:
+            alternar_status_restaurante(main_func)
+        elif opcao_escolhida == 8:
             finalizar_app()
         else:
             opcao_invalida(main_func)
@@ -128,7 +131,33 @@ def listar(main_func):
     exibir_subtitulo('LISTAR!')
     exibir_listagens()
     escolher_listagem(main_func)
-
+    
+def remover_restaurante(main_func):
+    exibir_subtitulo('REMOVENDO RESTAURANTE!')
+    
+    # Exibir lista de restaurantes cadastrados
+    print(f'{'Nome do restaurante'.ljust(22)} | {'Status'}')
+    
+    for restaurante in Restaurante.restaurantes:
+        nome_restaurante = restaurante._nome
+        ativo = 'Ativado' if restaurante._ativo else 'Desativado'
+        print(f'- {nome_restaurante.ljust(20)} | {ativo}')
+    print()
+    
+    nome_do_restaurante = input('Digite o nome do restaurante que deseja remover: ')
+    restaurante_encontrado = False
+    
+    for restaurante in Restaurante.restaurantes:
+        if nome_do_restaurante == restaurante._nome:
+            restaurante_encontrado = True
+            Restaurante.restaurantes.remove(restaurante)
+            print(f'O restaurante {nome_do_restaurante} foi removido com sucesso!')
+            break
+    if not restaurante_encontrado:
+        print(f'O restaurante {nome_do_restaurante} não foi encontrado!')
+        
+    voltar_ao_menu_principal(main_func)
+    
 def cadastrar_novo_restaurante(main_func):
     exibir_subtitulo('CADASTRAR NOVO RESTAURANTE!')
     
@@ -332,33 +361,34 @@ def mostrar_cardapio(main_func):
     voltar_ao_menu_principal(main_func)
 
 def adicionar_item_ao_cardapio_de_restaurante(main_func):
+    exibir_subtitulo("ADICIONANDO ITEM AO CARDÁPIO DE RESTAURANTE")
     nome_restaurante = input('Digite o nome do restaurante que deseja adicionar um item ao cardápio: ')
     restaurante_encontrado = False
     
     for restaurante in Restaurante.restaurantes:
         if nome_restaurante == restaurante._nome:
             restaurante_encontrado = True
-            tipo_item = input("""Digite o tipo do item que deseja adicionar ao cardápio
+            tipo_item = input("""\nDigite o tipo do item que deseja adicionar ao cardápio
 1. Prato
 2. Bebida
 3. Sobremesa
 Insira o tipo: """)
             if tipo_item == '1':
-                nome_prato = input('Digite o nome do prato que deseja adicionar ao cardápio: ')
+                nome_prato = input('\nDigite o nome do prato que deseja adicionar ao cardápio: ')
                 preco_prato = float(input(f'Digite o preço do prato {nome_prato}: '))
                 descricao_prato = input(f'Digite a descrição do prato {nome_prato}: ')
                 prato = Prato(nome_prato, preco_prato, descricao_prato)
                 restaurante._cardapio.append(prato)
                 print(f'O prato {nome_prato} foi adicionado ao cardápio do restaurante {nome_restaurante} com sucesso!')
             elif tipo_item == '2':
-                nome_bebida = input('Digite o nome da bebida que deseja adicionar ao cardápio: ')
+                nome_bebida = input('\nDigite o nome da bebida que deseja adicionar ao cardápio: ')
                 preco_bebida = float(input(f'Digite o preço da bebida {nome_bebida}: '))
                 tamanho_bebida = input(f'Digite o tamanho da bebida {nome_bebida}: ')
                 bebida = Bebida(nome_bebida, preco_bebida, tamanho_bebida)
                 restaurante._cardapio.append(bebida)
                 print(f'A bebida {nome_bebida} foi adicionada ao cardápio do restaurante {nome_restaurante} com sucesso!')
             elif tipo_item == '3':
-                nome_sobremesa = input('Digite o nome da sobremesa que deseja adicionar ao cardápio: ')
+                nome_sobremesa = input('\nDigite o nome da sobremesa que deseja adicionar ao cardápio: ')
                 preco_sobremesa = float(input(f'Digite o preço da sobremesa {nome_sobremesa}: '))
                 tipo_sobremesa = input(f'Digite o tipo da sobremesa {nome_sobremesa}: ')
                 tamanho_sobremesa = input(f'Digite o tamanho da sobremesa {nome_sobremesa}: ')
@@ -367,7 +397,7 @@ Insira o tipo: """)
                 restaurante._cardapio.append(sobremesa)
                 print(f'A sobremesa {nome_sobremesa} foi adicionada ao cardápio do restaurante {nome_restaurante} com sucesso!')
             else:
-                print('Opção inválida!')
+                print('\nOpção inválida!')
                 tipo_item = input("""Digite o tipo do item que deseja adicionar ao cardápio
 1. Prato
 2. Bebida
